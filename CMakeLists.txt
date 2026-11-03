@@ -8,9 +8,11 @@ option(SC_FIREBASE_BUILD_TESTS "Build simply-cpp-firebase tests" ${PROJECT_IS_TO
 get_sc_version()
 message(STATUS "SimplyCPP ${SC_MODULE} Version: ${SC_VERSION}")
 
-# sc::rest (libcurl) for the requests, sc::base64 and sc::params; nlohmann/json for the values;
+# sc::base64 and sc::params; nlohmann/json for the values;
 # OpenSSL to sign the service account's token requests (RS256).
 find_or_install_package(sc-core simply-cpp-dev simply-cpp 1.24.0)
+# sc::rest (rest.h), sc-core's until 2.0.0.
+find_or_install_package(sc-http simply-cpp-http-dev simply-cpp-http 1.0.3)
 find_or_install_package(nlohmann_json nlohmann-json3-dev nlohmann_json)
 find_or_install_package(OpenSSL libssl-dev openssl)
 
@@ -19,8 +21,8 @@ set(SOURCE_LIBRARIES)
 set(SOURCE_LINK_LIBRARIES)
 
 add_sc_object(sc_firebase
-        LINK_LIBRARIES sc::sc-core nlohmann_json::nlohmann_json OpenSSL::Crypto
-        PUBLIC_LINK_LIBRARIES sc::sc-core nlohmann_json::nlohmann_json OpenSSL::Crypto)
+        LINK_LIBRARIES sc::sc-core sc::sc-http-shared nlohmann_json::nlohmann_json OpenSSL::Crypto
+        PUBLIC_LINK_LIBRARIES sc::sc-core sc::sc-http-shared nlohmann_json::nlohmann_json OpenSSL::Crypto)
 
 add_sc_libraries(DESCRIPTION "simply-cpp Google Firebase: service-account access tokens and the Realtime Database")
 target_compile_features(sc-firebase PUBLIC cxx_std_20)
@@ -38,4 +40,4 @@ endif ()
 
 add_sc_example(sc-firebase-demo)
 
-package_sc_module(DEV_DEPENDS "simply-cpp-dev (>= 1.24.0~)" nlohmann-json3-dev libssl-dev)
+package_sc_module(DEPENDS "simply-cpp-http (>= 1.0.3~)" DEV_DEPENDS "simply-cpp-dev (>= 1.24.0~)" "simply-cpp-http-dev (>= 1.0.3~)" nlohmann-json3-dev libssl-dev)
