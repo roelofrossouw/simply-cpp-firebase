@@ -12,7 +12,7 @@ message(STATUS "SimplyCPP ${SC_MODULE} Version: ${SC_VERSION}")
 # OpenSSL to sign the service account's token requests (RS256).
 find_or_install_package(sc-core simply-cpp-dev simply-cpp 1.24.0)
 # sc::rest (rest.h), sc-core's until 2.0.0.
-find_or_install_package(sc-http simply-cpp-http-dev simply-cpp-http 1.0.3)
+find_or_install_package(sc-http simply-cpp-http-dev simply-cpp-http 1.1.0)
 find_or_install_package(nlohmann_json nlohmann-json3-dev nlohmann_json)
 find_or_install_package(OpenSSL libssl-dev openssl)
 
@@ -40,4 +40,4 @@ endif ()
 
 add_sc_example(sc-firebase-demo)
 
-package_sc_module(DEPENDS "simply-cpp-http (>= 1.0.3~)" DEV_DEPENDS "simply-cpp-dev (>= 1.24.0~)" "simply-cpp-http-dev (>= 1.0.3~)" nlohmann-json3-dev libssl-dev)
+package_sc_module(DEPENDS "simply-cpp-http (>= 1.1.0~)" DEV_DEPENDS "simply-cpp-dev (>= 1.24.0~)" "simply-cpp-http-dev (>= 1.1.0~)" nlohmann-json3-dev libssl-dev)
