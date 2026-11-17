@@ -1,4 +1,5 @@
 #include <sc/firebase/sc_firebase.h>
+#include "paths.h"
 
 #include <sc/core/base64.h>
 #include <sc/http/rest.h>

@@ -20,7 +20,7 @@ set(SOURCE_OBJECTS)
 set(SOURCE_LIBRARIES)
 set(SOURCE_LINK_LIBRARIES)
 
-add_sc_object(sc_firebase
+add_sc_object(sc_firebase SOURCES src/paths.h
         LINK_LIBRARIES sc::sc-core sc::sc-http-shared nlohmann_json::nlohmann_json OpenSSL::Crypto
         PUBLIC_LINK_LIBRARIES sc::sc-core sc::sc-http-shared nlohmann_json::nlohmann_json OpenSSL::Crypto)
 

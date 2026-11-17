@@ -134,11 +134,6 @@ namespace sc::firebase {
         std::shared_ptr<credentials> access_;
         long timeout_ = 30;
     };
-
-    // A path's segments: "/a//b/" -> {"a", "b"}.
-    std::vector<std::string> split_path(std::string_view path);
-    // The segments joined by '/': {"a", "b"} -> "a/b".
-    std::string join_path(const std::vector<std::string> &segments);
 }
 
 #endif
