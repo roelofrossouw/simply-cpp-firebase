@@ -3,7 +3,7 @@
 // Needs SC_FIREBASE_TEST_CREDENTIALS (a service account's JSON file) and SC_FIREBASE_TEST_URL (the
 // database's URL); SC_FIREBASE_TEST_ROOT is where it writes (default "sc-firebase-test"). Without
 // them it passes, saying it skipped.
-#include "sc_firebase.h"
+#include <sc/firebase/sc_firebase.h>
 #include "sc_test.h"
 
 #include <cstdlib>

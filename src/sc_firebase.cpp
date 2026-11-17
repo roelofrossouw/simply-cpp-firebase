@@ -1,7 +1,7 @@
-#include "sc_firebase.h"
+#include <sc/firebase/sc_firebase.h>
 
-#include <base64.h>
-#include <rest.h>
+#include <sc/core/base64.h>
+#include <sc/http/rest.h>
 
 #include <openssl/bio.h>
 #include <openssl/evp.h>

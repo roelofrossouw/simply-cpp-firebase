@@ -5,8 +5,8 @@
 //     sc-firebase-demo -c service-account.json -u https://example-app.firebaseio.com set devices/42 '{"online": 1}'
 //     sc-firebase-demo -c service-account.json -u https://example-app.firebaseio.com move devices/42 archive/42
 
-#include <params.h>
-#include <sc_firebase.h>
+#include <sc/core/params.h>
+#include <sc/firebase/sc_firebase.h>
 
 #include <iostream>
 
