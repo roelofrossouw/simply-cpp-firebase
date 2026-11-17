@@ -3,7 +3,7 @@
 `sc-firebase` talks to Google Firebase from a server, the way Firebase's Admin
 SDKs do, without them: a service account's key becomes OAuth2 access tokens,
 and the Realtime Database is read and written over its REST API. It needs
-sc-core (its HTTP client), nlohmann/json and OpenSSL.
+sc-core, sc-http (its HTTP client), nlohmann/json and OpenSSL.
 
 **Documentation:** the [simply-cpp wiki](https://github.com/roelofrossouw/simply-cpp/wiki) has a [Firebase guide](https://github.com/roelofrossouw/simply-cpp/wiki/Firebase) and the [sc-firebase reference](https://github.com/roelofrossouw/simply-cpp/wiki/Reference-sc-firebase).
 
