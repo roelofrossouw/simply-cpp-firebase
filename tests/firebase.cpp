@@ -1,6 +1,6 @@
 // sc-firebase without the network: a service account's JSON, the signed token request (checked
 // with the key it was signed with), and the database's paths and URLs.
-#include <sc/firebase/sc_firebase.h>
+#include <sc/firebase/firebase.h>
 #include "../src/paths.h"
 #include "sc_test.h"
 

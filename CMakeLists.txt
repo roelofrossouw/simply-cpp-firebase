@@ -11,8 +11,8 @@ message(STATUS "SimplyCPP ${SC_MODULE} Version: ${SC_VERSION}")
 # sc::base64 and sc::params; nlohmann/json for the values;
 # OpenSSL to sign the service account's token requests (RS256).
 find_or_install_package(sc-core simply-cpp-dev simply-cpp 3.0.0)
-# sc::rest (rest.h), sc-core's until 2.0.0.
-find_or_install_package(sc-http simply-cpp-http-dev simply-cpp-http 2.0.0)
+# sc::http::client (<sc/http/client.h>; sc::rest, in sc-core until 2.0.0).
+find_or_install_package(sc-http simply-cpp-http-dev simply-cpp-http 3.0.0)
 find_or_install_package(nlohmann_json nlohmann-json3-dev nlohmann_json)
 find_or_install_package(OpenSSL libssl-dev openssl)
 
@@ -20,7 +20,7 @@ set(SOURCE_OBJECTS)
 set(SOURCE_LIBRARIES)
 set(SOURCE_LINK_LIBRARIES)
 
-add_sc_object(sc_firebase SOURCES src/paths.h
+add_sc_object(firebase SOURCES src/paths.h
         LINK_LIBRARIES sc::sc-core sc::sc-http-shared nlohmann_json::nlohmann_json OpenSSL::Crypto
         PUBLIC_LINK_LIBRARIES sc::sc-core sc::sc-http-shared nlohmann_json::nlohmann_json OpenSSL::Crypto)
 
@@ -40,4 +40,4 @@ endif ()
 
 add_sc_example(sc-firebase-demo)
 
-package_sc_module(DEPENDS "simply-cpp-http (>= 2.0.0~)" DEV_DEPENDS "simply-cpp-dev (>= 3.0.0~)" "simply-cpp-http-dev (>= 2.0.0~)" nlohmann-json3-dev libssl-dev)
+package_sc_module(DEPENDS "simply-cpp-http (>= 3.0.0~)" DEV_DEPENDS "simply-cpp-dev (>= 3.0.0~)" "simply-cpp-http-dev (>= 3.0.0~)" nlohmann-json3-dev libssl-dev)

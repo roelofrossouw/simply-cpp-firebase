@@ -6,7 +6,7 @@
 //     sc-firebase-demo -c service-account.json -u https://example-app.firebaseio.com move devices/42 archive/42
 
 #include <sc/core/params.h>
-#include <sc/firebase/sc_firebase.h>
+#include <sc/firebase/firebase.h>
 
 #include <iostream>
 

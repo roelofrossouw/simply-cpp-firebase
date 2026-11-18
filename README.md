@@ -8,7 +8,7 @@ sc-core, sc-http (its HTTP client), nlohmann/json and OpenSSL.
 **Documentation:** the [simply-cpp wiki](https://github.com/roelofrossouw/simply-cpp/wiki) has a [Firebase guide](https://github.com/roelofrossouw/simply-cpp/wiki/Firebase) and the [sc-firebase reference](https://github.com/roelofrossouw/simply-cpp/wiki/Reference-sc-firebase).
 
 ```cpp
-#include <sc/firebase/sc_firebase.h>
+#include <sc/firebase/firebase.h>
 
 const auto account = sc::firebase::service_account::load("service-account.json");
 const sc::firebase::database db{"https://example-app.firebaseio.com", account};

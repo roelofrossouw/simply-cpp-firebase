@@ -1,8 +1,8 @@
-#include <sc/firebase/sc_firebase.h>
+#include <sc/firebase/firebase.h>
 #include "paths.h"
 
 #include <sc/core/base64.h>
-#include <sc/http/rest.h>
+#include <sc/http/client.h>
 
 #include <openssl/bio.h>
 #include <openssl/evp.h>
@@ -78,7 +78,7 @@ namespace sc::firebase {
         }
 
         // The response as JSON, or an error for a status that isn't 2xx (or none).
-        json answered(const sc::rest &call, const std::string &body, const std::string &what) {
+        json answered(const sc::http::client &call, const std::string &body, const std::string &what) {
             const auto status = call.status();
             if (status == 0) throw error(0, what + ": no answer: " + call.error());
             if (status < 200 || status >= 300) throw error(status, what + ": " + std::to_string(status) + " " + message_of(body));
@@ -144,7 +144,7 @@ namespace sc::firebase {
         const std::lock_guard lock{mutex_};
         const auto now = std::chrono::system_clock::now();
         if (!token_.empty() && now < expires_ - std::chrono::minutes{5}) return token_;
-        sc::rest call{account_.token_uri};
+        sc::http::client call{account_.token_uri};
         call.quiet();
         call.header("Content-Type", "application/x-www-form-urlencoded");
         const auto body = call.timeout(30).post("grant_type=" + percent_encoded("urn:ietf:params:oauth:grant-type:jwt-bearer") +
@@ -211,7 +211,7 @@ namespace sc::firebase {
     json database::request(const char *method, const std::string_view path, const json *body, const std::string_view query) const {
         const std::string what = std::string{"sc::firebase: "} + method + " /" + join_path(split_path(path));
         for (int attempt = 0;; ++attempt) {
-            sc::rest call{url_of(path, query)};
+            sc::http::client call{url_of(path, query)};
             call.quiet();
             call.timeout(timeout_);
             call.bearer(access_->access_token());
@@ -223,7 +223,7 @@ namespace sc::firebase {
             else if (verb == "POST") answer = call.post(sent);
             else if (verb == "DELETE") answer = call.del();
             else {
-                // sc::rest has no PATCH; the database takes a POST that says it's one.
+                // sc::http::client has no PATCH; the database takes a POST that says it's one.
                 call.header("X-HTTP-Method-Override", method);
                 answer = call.post(sent);
             }
